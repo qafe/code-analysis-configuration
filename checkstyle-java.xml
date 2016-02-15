@@ -1,0 +1,410 @@
+<!--
+    Copyright 2008-2016 Qualogy Solutions B.V.
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    	http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <!--
+        Filters
+    -->
+
+    <!-- SuppressionCommentFilter allows to skip certain checks by comment markups -->
+    <module name="SuppressionCommentFilter">
+        <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
+        <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
+        <property name="checkFormat" value="$1"/>
+    </module>
+
+    <!--
+        Duplicate Code
+    -->
+
+    <!-- Basic duplicate code check -->
+    <module name="StrictDuplicateCode"/>
+
+    <!--
+        Miscellaneous
+    -->
+
+    <module name="NewlineAtEndOfFile"/>
+    <module name="Translation"/>
+
+    <!-- Check uniqueness of keys in .properties files -->
+    <module name="UniqueProperties"/>
+
+    <!--
+        Size Violations
+    -->
+
+    <!-- Restrict file length to 2000 lines -->
+    <module name="FileLength"/>
+
+    <!--
+        Whitespace
+    -->
+
+    <!-- No tabs in file allowed -->
+    <module name="FileTabCharacter"/>
+
+    <module name="TreeWalker">
+
+        <!--
+            Annotations
+        -->
+
+        <!-- Allow compact annotation value and disallow array for one value -->
+        <module name="AnnotationUseStyle"/>
+
+        <!-- Both @Deprecated annotation and @deprecated javadoc tag must be present -->
+        <module name="MissingDeprecated"/>
+
+        <!-- module name="MissingOverride" -->
+
+        <!-- module name="PackageAnnotation" -->
+
+        <!-- module name="SuppressWarnings" -->
+
+        <!-- module name="SuppressWarningsHolder" -->
+
+        <!--
+            Block checks
+        -->
+
+        <!-- No block must be empty -->
+        <module name="EmptyBlock"/>
+
+        <!-- Left curly braces must be on end of line -->
+        <module name="LeftCurly"/>
+
+        <!-- Always use braces -->
+        <module name="NeedBraces"/>
+
+        <!-- Right curly braces must be on same line with catch, finally, else -->
+        <module name="RightCurly"/>
+
+        <!-- No unnecessary nested blocks -->
+        <module name="AvoidNestedBlocks"/>
+
+        <!--
+            Class design
+        -->
+
+        <!-- Only static final vars can be non-private -->
+        <module name="VisibilityModifier"/>
+
+        <!-- Class with only private constructors must be final -->
+        <module name="FinalClass"/>
+
+        <!-- Interface must not only contain constants -->
+        <module name="InterfaceIsType"/>
+
+        <!-- Class with only static members and methods must only have private constructors -->
+        <module name="HideUtilityClassConstructor"/>
+
+        <!-- Non-private non-static methods must be abstract, final or have an empty implementation -->
+        <module name="DesignForExtension"/>
+
+        <!-- Exception classes must only have final fields -->
+        <module name="MutableException"/>
+
+        <!-- Methods should throw at most three exceptions -->
+        <module name="ThrowsCount">
+            <property name="max" value="3"/>
+        </module>
+
+        <!-- Nested (internal) classes/interfaces are declared at the bottom of the class -->
+        <module name="InnerTypeLast"/>
+
+        <!--
+            Coding
+        -->
+
+        <!-- module name="ArrayTrailingComma" -->
+
+        <module name="AvoidInlineConditionals"/>
+
+        <!-- If class implements covariant equals also equals should be override -->
+        <module name="CovariantEquals"/>
+
+        <!-- No standalons semi colons -->
+        <module name="EmptyStatement"/>
+
+        <!-- Prevent doing "My_Sweet_String".equals(nullString) -->
+        <module name="EqualsAvoidNull"/>
+
+        <!-- Overriding equals should also override hashCode() -->
+        <module name="EqualsHashCode"/>
+
+        <!-- Unchanged local variables and method parameters should be final -->
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+        </module>
+
+        <!-- Prevent variables to hide a field -->
+        <!-- <module name="HiddenField"/> -->
+		
+
+        <!-- Do not instantiate a boolean, but use Boolean.TRUE -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean"/>
+        </module>
+
+        <!-- module name="IllegalToken" -->
+
+        <!-- module name="IllegalTokenText" -->
+
+        <!-- Do not use inline assignment of variables -->
+        <module name="InnerAssignment"/>
+
+        <!-- Only allow integer literals -1, 0, 1 and 2 -->
+        <module name="MagicNumber"/>
+
+        <!-- Switch statement must have a default -->
+        <module name="MissingSwitchDefault"/>
+
+        <!-- For loop control variable is modified in the code block -->
+        <module name="ModifiedControlVariable"/>
+
+        <!-- Do not allow duplicates, unchecked and subclasses of checked exceptions -->
+        <module name="RedundantThrows"/>
+
+        <!-- Tries to find unnecessary complex boolean expressions -->
+        <module name="SimplifyBooleanExpression"/>
+
+        <module name="SimplifyBooleanReturn"/>
+
+        <!-- Do not compare strings using == or != -->
+        <module name="StringLiteralEquality"/>
+
+        <!-- Allow up to 2 additional for loops in an outer for loop -->
+        <module name="NestedForDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedIfDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+
+        <!-- Do not override clone() -->
+        <module name="NoClone"/>
+
+        <!-- Do not catch Exception, Throwable or RuntimeException directly -->
+        <module name="IllegalCatch"/>
+
+        <!-- Class must have package declaration and it must match directory structure -->
+        <module name="PackageDeclaration"/>
+
+        <!-- Sanity check setUp() and tearDown() methods -->
+        <module name="JUnitTestCase"/>
+
+        <!-- Do not use more than 3 return statements in one method -->
+        <module name="ReturnCount">
+			<property name="severity" value="warning"/>
+            <property name="max" value="3"/>
+        </module>
+
+        <!-- Do not use certain classes as types in variable declarations, return values or parameters. See doc -->
+        <module name="IllegalType"/>
+
+        <!--Restrict ordering of declarations by modifier usage -->
+        <module name="DeclarationOrder"/>
+        <module name="ParameterAssignment"/>
+        <module name="ExplicitInitialization"/>
+        <module name="DefaultComesLast"/>
+
+        <!-- module name="MissingCtor" -->
+
+        <!-- module name="FallThrough" -->
+
+        <!-- Log the usage of more than one string literal in a file -->
+        <module name="MultipleStringLiterals">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="MultipleVariableDeclarations"/>
+
+        <!-- module name="RequireThis" -->
+
+        <!-- module name="UnnecessaryParentheses" -->
+
+        <module name="OneStatementPerLine"/>
+
+        <!--
+            Imports
+        -->
+
+        <module name="AvoidStarImport"/>
+
+        <!-- module name="AvoidStaticImport" -->
+
+        <!-- module name="IllegalImport" -->
+
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
+
+        <!-- Checkstyle import order clashes with eclipse import order -->
+        <!-- module name="ImportOrder"/ -->
+
+        <!--
+            Javadoc
+        -->
+
+        <!-- module name="JavadocPackage" -->
+
+        <!-- Describe the responsibility of the class or interface -->
+        <module name="JavadocType"/>
+
+        <!-- module name="JavadocMethod" -->
+
+        <!-- module name="JavadocVariable" -->
+
+        <!-- module name="JavadocStyle" -->
+
+        <!-- module name="WriteTag" -->
+
+        <!-- module name="ImportControl" -->
+
+        <!--
+            Metrics
+        -->
+
+        <!-- No more than 3 boolean tokens in boolean expression -->
+        <module name="BooleanExpressionComplexity"/>
+
+        <!-- No more than 7 classes to instantiate from in one class. See for excluded classes: http://checkstyle.sourceforge.net/config_metrics.html -->
+        <module name="ClassDataAbstractionCoupling"/>
+
+        <!-- Do not rely on more than 20 classes in a class. See for excluded classes: http://checkstyle.sourceforge.net/config_metrics.html -->
+        <module name="ClassFanOutComplexity"/>
+
+        <!-- No more than 15 if, while, do, for, ?, catch, switch, case, 'and' and 'or' statements/operators. Throw error if more than 15 -->
+        <module name="CyclomaticComplexity"/>
+        <module name="CyclomaticComplexity">
+            <property name="severity" value="error"/>
+            <property name="max" value="15"/>
+        </module>
+
+        <!-- Restrict method length to 50, class to 1500 and file to 2000 lines, not counting comment lines -->
+        <module name="JavaNCSS"/>
+
+        <!--
+            Miscellaneous
+        -->
+
+        <!-- <module name="TodoComment"/> -->
+        <module name="UpperEll"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="FinalParameters">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="Indentation"/>
+        <module name="TrailingComment"/>
+        <module name="Regexp">
+            <property name="severity" value="info"/>
+            <property name="format" value="\s+$"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Line has trailing spaces."/>
+        </module>
+
+        <!-- Outer type name must match file name -->
+        <module name="OuterTypeFilename"/>
+
+        <!--
+            Modifiers
+        -->
+
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+        <!--
+            Naming conventions
+        -->
+
+        <module name="ConstantName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="TypeName"/>
+
+        <!--
+            Size Violations
+        -->
+
+        <!-- Restricht number of statements in method body to 30 -->
+        <module name="ExecutableStatementCount"/>
+
+        <!-- Restrict line length -->
+        <module name="LineLength">
+            <property name="max" value="120"/>
+        </module>
+
+        <!-- No more than 150 lines in method bodies, including empty lines and comments -->
+        <module name="MethodLength"/>
+
+        <!-- Restrict length of anonymous inner classes to 20 -->
+        <module name="AnonInnerLength"/>
+
+        <!-- Limit the number of method parameters to 7 -->
+        <module name="ParameterNumber">
+            <property name="severity" value="info"/>
+        </module>
+
+        <!-- Allow only one class per file on root level -->
+        <module name="OuterTypeNumber"/>
+
+        <!--
+            Whitespace
+        -->
+
+        <!-- No whitespace around generic tokens < and > -->
+        <module name="GenericWhitespace"/>
+
+        <!-- No whitespace in empty for loop between ( and ; -->
+        <module name="EmptyForInitializerPad"/>
+
+        <!-- No padding in empty for iterator -->
+        <module name="EmptyForIteratorPad"/>
+
+        <!-- No padding between method identifier and left parenthesis -->
+        <module name="MethodParamPad"/>
+
+        <module name="NoWhitespaceAfter"/>
+
+        <!-- No whitespace before tokens: ; ++ -->
+        <module name="NoWhitespaceBefore"/>
+
+        <!-- When lines are wrapped put operator on new line -->
+        <module name="OperatorWrap"/>
+
+        <!-- No space right after left parenthesis and before right parenthesis -->
+        <module name="ParenPad"/>
+
+        <!-- No padding allowed between parenthesis of a cast -->
+        <module name="TypecastParenPad"/>
+
+        <!-- Space must be present after comma, semicolon and cast -->
+        <module name="WhitespaceAfter"/>
+
+        <!-- Many tokens must be surrounded with space. For list of tokens see: http://checkstyle.sourceforge.net/config_whitespace.html -->
+        <module name="WhitespaceAround"/>
+
+        <!-- Make file content available for suppression comment filter -->
+        <module name="FileContentsHolder"/>
+    </module>
+</module>
