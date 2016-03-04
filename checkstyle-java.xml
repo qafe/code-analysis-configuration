@@ -87,7 +87,7 @@
     <module name="CyclomaticComplexity"/>
     <module name="CyclomaticComplexity">
       <property name="severity" value="error"/>
-      <property name="max" value="15"/>
+      <property name="max" value="20"/>
     </module>
     <module name="JavaNCSS"/>
     <module name="UpperEll"/>
