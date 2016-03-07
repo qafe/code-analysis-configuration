@@ -84,7 +84,6 @@
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
-    <module name="CyclomaticComplexity"/>
     <module name="CyclomaticComplexity">
       <property name="severity" value="error"/>
       <property name="max" value="20"/>
@@ -117,7 +116,9 @@
     <module name="ParameterName"/>
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
-    <module name="ExecutableStatementCount"/>
+    <module name="ExecutableStatementCount">
+        <property name="max" value="50"/>
+    </module>
     <module name="LineLength">
       <property name="max" value="120"/>
     </module>
